@@ -32,12 +32,6 @@ export const blogpostType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'publishedAt',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: 'image',
       type: 'image',
     }),
@@ -45,6 +39,25 @@ export const blogpostType = defineType({
       name: 'body',
       type: 'array',
       of: [{type: 'block'}],
+    }),
+    defineField({
+      name: 'tags',
+      type: 'array',
+      of: [{
+        type: 'string',
+        options: {
+          list: [
+            {title: 'How-To', value: 'how-to'},
+            {title: 'New Feature', value: 'new-feature'}
+          ],
+        },
+      }],
+    }),
+    defineField({
+      name: 'publishedAt',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+      validation: (rule) => rule.required(),
     }),
   ],
 })
