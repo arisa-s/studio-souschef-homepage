@@ -1,3 +1,3 @@
-import { postType } from "./postTyle";
+import { blogpostType } from "./blogPostType";
 
-export const schemaTypes = [postType]
+export const schemaTypes = [blogpostType]
