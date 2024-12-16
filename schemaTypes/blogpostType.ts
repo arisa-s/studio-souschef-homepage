@@ -47,8 +47,8 @@ export const blogpostType = defineType({
         type: 'string',
         options: {
           list: [
-            {title: 'How-To', value: 'how-to'},
-            {title: 'New Feature', value: 'new-feature'}
+            {title: 'How To', value: 'howTo'},
+            {title: 'New Feature', value: 'newFeature'}
           ],
         },
       }],
