@@ -26,14 +26,18 @@ export const blogpostType = defineType({
       name: 'slug',
       type: 'slug',
       options: {
-        source: 'title',
         isUnique: isUniqueOtherThanLanguage
       },
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'image',
       type: 'image',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description (SEO)',
+      type: 'text',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'body',
@@ -68,15 +72,15 @@ export async function isUniqueOtherThanLanguage(slug: string, context: SlugValid
     return true
   }
   const client = getClient({apiVersion: '2023-04-24'})
-  const id = document._id.replace(/^blogposts\./, '')
+  const id = document._id.replace(/^drafts\./, '')
   const params = {
-    blogpost: `blogposts.${id}`,
+    draft: `drafts.${id}`,
     published: id,
     language: document.language,
     slug,
   }
   const query = `!defined(*[
-    !(_id in [$blogpost, $published]) &&
+    !(_id in [$draft, $published]) &&
     slug.current == $slug &&
     language == $language
   ][0]._id)`
